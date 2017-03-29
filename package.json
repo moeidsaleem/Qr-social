@@ -1,0 +1,23 @@
+{
+  "name": "qr-social",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moeidsaleem/Qr-social.git"
+  },
+  "keywords": [
+    "qrcode",
+    "angularjs"
+  ],
+  "author": "atrixdigital",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moeidsaleem/Qr-social/issues"
+  },
+  "homepage": "https://github.com/moeidsaleem/Qr-social#readme"
+}

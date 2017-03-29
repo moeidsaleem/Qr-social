@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+  <title>Light Bootstrap Dashboard by Creative Tim</title>
+
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="assets/css/demo.css" rel="stylesheet" />
+
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+
+</head>
+<body ng-app="myApp">
+
+
+
+<div ng-hide="test">
+                                       
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Login</h4>
+                            </div>
+                            <div class="content">
+                                <form ng-submit="login()"> 
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group form-horizontal">
+                                                <label>Email</label>
+                                                <input type="text" class="form-control" ng-model="email"  placeholder="Email" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Password</label>
+                                                <input type="password" class="form-control" ng-model="password" placeholder="Username" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                 <button type="submit" class="btn btn-lg"  ng-click="testFunc()" ng-hide="test"> login </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--SiGN UP-->
+         <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Sign up</h4> <small>{{authErr}} </small>
+                            </div>
+                            <div class="content">
+                                <form ng-submit="signup()"> 
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group form-horizontal">
+                                                <label>Email</label>
+                                                <input type="text" class="form-control" ng-model="email"  placeholder="Email" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Password</label>
+                                                <input type="password" class="form-control" ng-model="password" placeholder="Username" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                 <button type="submit" class="btn btn-lg" ng-click="testFunc()" ng-hide="test"> signUp </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<!--IF AUTHENTICATED SHOW THIS SHIT-->
+<div ng-if="test">
+<div class="wrapper">
+    <div class="sidebar" data-color="azure" data-image="assets/img/sidebar-5.jpg" ui-view="sidebar">
+
+  
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default navbar-fixed" ui-view="header" > 
+           <!--THE NAVBAR-->
+        </nav>
+
+
+        <div class="content" ui-view="content">
+          
+        </div>
+
+
+        <footer class="footer" ui-view="footer">
+       
+        </footer>
+
+    </div>
+</div>
+
+</div>
+
+
+
+<!--<div ng-include="'app/modules/extra/header.html'"></div>-->
+
+
+
+  
+  <!-- angularjs files -->
+  <script src="app/lib/bower_components/angular/angular.js"></script>
+  <script src="app/lib/bower_components/angular-route/angular-route.js"></script>
+  <script src="app/lib/bower_components/angular-aria/angular-aria.js"></script>
+  <script src="app/lib/bower_components/angular-animate/angular-animate.js"></script>
+  <script src="app/lib/bower_components/angularfire/dist/angularfire.js"></script>
+  <script src="app/lib/bower_components/firebase/firebase.js"></script>
+  <script src="app/lib/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+  <!-- QR Code Library https://github.com/monospaced/angular-qrcode -->
+ <script src="app/lib/bower_components/qrcode-generator/js/qrcode.js"></script>
+ <script src="app/lib/angular-qrcode/angular-qrcode.js"></script>
+
+
+
+  <!-- app.js files -->
+   <script src="app/app.js"></script>
+   <script src="app/routes.js"></script>
+
+   <!-- modules -->
+<script src="app/modules/dashboard/dashboardController.js"></script>
+
+
+
+<!-- my Firebase App data --><script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBwzTGHFvdSEaJzkW93ppoK7hwldcjlIDE",
+    authDomain: "ainfyp.firebaseapp.com",
+    databaseURL: "https://ainfyp.firebaseio.com",
+    storageBucket: "ainfyp.appspot.com",
+    messagingSenderId: "180293322394"
+  };
+  firebase.initializeApp(config);
+</script>
+
+
+
+<!-- THEME CONTENT -->
+<ng-include src="'app/modules/extras/theme.html'"></ng-include>
+
+  </body>
+</html>
