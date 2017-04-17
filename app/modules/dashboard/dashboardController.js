@@ -16,7 +16,6 @@ var arr = [];
 
 
 
-
 if($rootScope.uid == null){
   console.log('you are not logged In');
   $state.go('login');
@@ -51,6 +50,9 @@ var f = userRef.child('following').on('value', function(snap){
   // synchronize the object with a three-way data binding
   // click on `index.html` above to see it used in the DOM!
   syncObject.$bindTo($scope, "user");
+
+
+
 
 
   $scope.follow = function(x){
@@ -94,6 +96,18 @@ $scope.onProfileUpdate = function(){
   // Generate a notification to all the freinds 
   userRef.child('name').set($scope.user.firstName + ' ' +$scope.user.lastName)
   console.log('profile Updated');
+
+  //  Now to notify other friends that profile has been updated. 
+  // Get Those users unique key and add them in an array 
+  // For every value of array, generate notification.
+userRef.child('friends').on('value', function(snap){
+    let arrFriends = [];
+    arrFriends.push(snap.key());
+});
+let uF = userRef.child('friends');
+$scope.friendx = $firebaseArray(uF);
+
+
   
 }
 
