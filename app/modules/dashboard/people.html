@@ -1,5 +1,5 @@
 
-            <div class="container-fluid">
+            <div class="container-fluid" ng-init="theFollow()">
                 <div class="row">
 
                     <div class="row">
@@ -22,7 +22,7 @@
                                     {{x.aboutMe}}
                                 </p>
                                 <p class="text-center">
-                                    <button class="btn btn-primary"  ng-click="follow(x)" ng-hide="hideIt" > {{theFollow}}</button>
+                                    <button class="btn btn-primary"  ng-click="follow(x)" > Follow</button>
                                     <!--<a  ui-sref="peopleDetails({selectedUser:{{x}}})" class="btn btn-default" >Details</a>-->
                                 </p>
                             </div>

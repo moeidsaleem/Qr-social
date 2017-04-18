@@ -59,7 +59,31 @@ app.run( function ($rootScope,$state,$firebaseAuth,$stateParams) {
 
   
 
+    //SignUp with Social 
+    $rootScope.signinSocial = function(provider){
+    	console.log('signyup with facebook');
+        
+			$rootScope.auth.signInWithPopup(provider)
+			.then(function(firebaseUser){
+	         	console.log("Signed in as:", firebaseUser.uid);
+				 $rootScope.uid = firebaseUser.uid;
+			
+				 $state.go('dashboard');
+				 $rootScope.test = !$rootScope.test;
+				 let lastLoginRef = users.child(firebaseUser.uid).child('last_login');
+				//  users.child($rootScope.uid).child('last_login').set(date.toLocaleTimeString);
+				// we can also chain the two calls together
+				lastLoginRef.push().set({
+				timing: date.toLocaleTimeString(),
+				CurrentDate:date.toLocaleDateString()
+				});
 
+
+	            	}).catch(function(error) {
+	                	console.error("Authentication failed:", error);
+               });
+		
+    }
         //   THIS IS SIGN UP 
 			$rootScope.signup = function(){
              console.log('you signup');
