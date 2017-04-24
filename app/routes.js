@@ -1,25 +1,42 @@
 
 
 
-app.config(function ($locationProvider,$stateProvider,$urlRouterProvider) {
+app.config(function ($locationProvider,$stateProvider,$urlRouterProvider,localStorageServiceProvider) {
 
 
- 
+// Setting local storage for sessions and storage.
+localStorageServiceProvider
+    .setStorageType('sessionStorage')
+    .setNotify(true, true);
+
+   
+
 $stateProvider
      .state('login', {
         url: '/login',
-        controller: 'LoginController',
+        controller: 'LoginCtrl',
         templateUrl: 'app/modules/login/login.html',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+
+      
+      })
+     .state('signup', {
+        url: '/signup',
+        controller: 'LoginCtrl',
+        templateUrl: 'app/modules/login/signup.html',
+        controllerAs: 'vm',
+
+      
       })
       .state('dashboard', {
         name:'dashboard',
-        controller:'DashboardCtrl',
+      controller:'DashboardCtrl',
         url: '/dashboard',
         templateUrl:'app/modules/dashboard/home.html',
         views:{
           header:{
-            templateUrl:'app/modules/dashboard/header.html'
+            templateUrl:'app/modules/dashboard/header.html',
+
           },
           sidebar:{
             templateUrl:'app/modules/dashboard/sidebar.html'
@@ -34,7 +51,7 @@ $stateProvider
       })
      .state('profile',{
        parent:'dashboard',
-       url:'/dashboard/profile',
+       url:'/profile',
       controller:'DashboardCtrl',
        templateUrl:'app/modules/dashboard/profile.html'
      })
@@ -45,7 +62,7 @@ $stateProvider
      })
       .state('people',{
        parent:'dashboard',
-       url:'/dashboard/people',
+       url:'/people',
         controller:'DashboardCtrl',
        templateUrl:'app/modules/dashboard/people.html'
      })
@@ -58,7 +75,7 @@ $stateProvider
      })
        .state('friends',{
        parent:'dashboard',
-       url:'/dashboard/friends',
+       url:'/friends',
         controller:'DashboardCtrl',
        templateUrl:'app/modules/dashboard/friends.html'
      })
@@ -71,7 +88,7 @@ $stateProvider
      
         
 
-     $urlRouterProvider.otherwise('/dashboard');
+     $urlRouterProvider.otherwise('/profile');
     //  // Remove the ! from the hash so that
     // // auth0.js can properly parse it
     $locationProvider.hashPrefix(''); 
