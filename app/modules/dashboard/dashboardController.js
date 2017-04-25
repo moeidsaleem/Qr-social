@@ -4,13 +4,25 @@ Last updated: 17/04/2017
 Author: atirxidigtal 
 
 */
-app.controller('DashboardCtrl',  function ($scope,$rootScope,$firebaseObject,$firebaseArray,$state) {
- 
+
+app.controller('DashboardCtrl',  function ($scope,sessionService,$rootScope,$firebaseObject,$firebaseArray,$state,localStorageService,authService) {
+
+
+ var vm = this;
+ vm.authService = authService;
+ vm.sessionService = sessionService;
+
+
+
+
+ if(!sessionService.getSession('uid')){
+      $state.go('login');
+ }else{
+
   const db = firebase.database().ref();
   const usersRef = db.child('users');
   // const followingList = usersRef('users').child($scope.user.uniqueId).child('following');
   
-
      $scope.users = $firebaseArray(usersRef);
 
 
@@ -18,13 +30,17 @@ app.controller('DashboardCtrl',  function ($scope,$rootScope,$firebaseObject,$fi
 //first i will get all following user's key in an array. 
 //then i will make a loop and save the matching user in another array of object. 
 
+
 var arr = [];
 var usersArr = [];
 if($rootScope.uid == null){
   console.log('you are not logged In');
   $state.go('login');
 }else{
-     var userRef = db.child('users').child($rootScope.uid);
+var arr = [];
+var usersArr = [];
+
+var userRef = db.child('users').child($rootScope.uid);
 var f = userRef.child('following').on('value', function(snap){
 
      var val = snap.val();
@@ -117,18 +133,23 @@ $scope.onProfileUpdate = function(){
   //  Now to notify other friends that profile has been updated. 
   // Get Those users unique key and add them in an array 
   // For every value of array, generate notification.
-userRef.child('friends').on('value', function(snap){
+userRef.child('followers').on('value', function(snap){
     let arrFriends = [];
     arrFriends.push(snap.key());
+    usersRef.child(arrFriends[i]).child('notification').push().set({
+      notify:snap.val().firstName + ' ' + snap.val().lastName + 'updated profile'
+    });
 });
-let uF = userRef.child('friends');
-$scope.friendx = $firebaseArray(uF);
 
 
-  
-}
 
 }
+
+$scope.removeNotification = function(x){
+  userRef.child('notification').child(x).remove();
+}
+
+
 
 
 $scope.removeFriend = function(id){
@@ -138,6 +159,30 @@ $scope.removeFriend = function(id){
 }
 
 
+ }
+ 
+ $scope.search = function(query){
+     usersRef.on('value', function(snap){
+         var Values = Object.keys(snap.val());
+         var total = Values.length;
+         
+         var arr = [];
+         var farr = [];
+         var counter = 0;
+         var checkFilter = ['education', 'age', '']
+         arr = $firebaseArray(usersRef);
+         for(var i=0; i<checkFilter.length; i++){
+             
+             for(var y = 0; y<total;y++){
+                 if(query == arr[y].firstName || query== arr[y].lastName){
+                     var str =  arr[y].firstName || arr[y].lastName;
+                     
+                 }
+             }
+         }
+         
+     })
+ }
 
 
 });

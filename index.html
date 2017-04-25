@@ -33,8 +33,12 @@
 </head>
 <body ng-app="myApp">
 
+<div ng-hide="vm.sessionService.checkSession()">
+    <div ui-view></div>
 
+</div>
 
+<<<<<<< HEAD
 <div ng-hide="test">
                                        
 
@@ -80,48 +84,11 @@
                 </div>
             </div>
         </div>
+=======
+>>>>>>> e1140adbc12a00d8b920f5b149df03884bcabccd
 
-        <!--SiGN UP-->
-         <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Sign up</h4> <small>{{authErr}} </small>
-                            </div>
-                            <div class="content">
-                                <form ng-submit="signup()"> 
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="form-group form-horizontal">
-                                                <label>Email</label>
-                                                <input type="text" class="form-control" ng-model="email"  placeholder="Email" >
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>Password</label>
-                                                <input type="password" class="form-control" ng-model="password" placeholder="Username" >
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                 <button type="submit" class="btn btn-lg" ng-click="testFunc()" ng-hide="test"> signUp </button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-</div>
 <!--IF AUTHENTICATED SHOW THIS SHIT-->
-<div ng-if="test">
+<div ng-hide="vm.sessionService.checkSession()==false">
 <div class="wrapper">
     <div class="sidebar" data-color="azure" data-image="assets/img/sidebar-5.jpg" ui-view="sidebar">
 
@@ -157,6 +124,7 @@
   
   <!-- angularjs files -->
   <script src="app/lib/bower_components/angular/angular.js"></script>
+  <script src="app/lib/bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
   <script src="app/lib/bower_components/angular-route/angular-route.js"></script>
   <script src="app/lib/bower_components/angular-aria/angular-aria.js"></script>
   <script src="app/lib/bower_components/angular-animate/angular-animate.js"></script>
@@ -176,6 +144,7 @@
 
    <!-- modules -->
 <script src="app/modules/dashboard/dashboardController.js"></script>
+<script src="app/modules/login/LoginController.js"></script>
 
 
 

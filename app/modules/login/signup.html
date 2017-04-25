@@ -1,14 +1,14 @@
-
-        <div class="content">
+   <!--SiGN UP-->
+         <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Login</h4>
+                                <h4 class="title">Sign up</h4> <small>{{authErr}} </small>
                             </div>
                             <div class="content">
-                                <form ng-submit="login()"> 
+                                <form ng-submit="signup()"> 
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="form-group form-horizontal">
@@ -24,7 +24,7 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                 <button type="submit" class="btn btn-lg"  ng-click="vm.authService.login(email,password)" ng-hide="test"> login </button>
+                                                 <button type="submit" class="btn btn-lg" ng-click="loginUser()" ng-hide="test"> signUp </button>
                                             </div>
                                         </div>
 
