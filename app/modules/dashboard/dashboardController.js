@@ -79,8 +79,49 @@ var f = userRef.child('following').on('value', function(snap){
 
 
 
+$scope.search = function(query){
 
 
+  usersRef.on('value', function(snap){
+ 
+
+  console.log(snap.val());
+   var Values = Object.keys(snap.val());
+      console.log(Values); // Contain uniqueId of all users
+      var total = Values.length;
+
+      var arr = [];
+      var farr = [];
+      var counter = 0;
+      arr = $firebaseArray(usersRef);
+      console.log(arr);
+    for(var i=0;i<total;i++){
+
+      for(var y=0; y<totalChecks;y++){
+        
+      }
+
+
+
+      }
+    
+
+});
+     
+   //  usersRef.on('value', function(snap){
+   //   var Values = Object.keys(snap.val());
+   //    console.log(Values); // Contain uniqueId of all users
+   //   console.log(Values.length);  /*All users in database*/
+   //   for(var y = 0; y<Values.length; y++){
+      
+   //   }
+
+   // });
+      
+
+}
+
+$scope.search();
   $scope.follow = function(x){
                   console.log(x.uniqueId);  
                   var d = new Date();
@@ -122,6 +163,8 @@ $scope.onProfileUpdate = function(){
   // Generate a notification to all the freinds 
   userRef.child('name').set($scope.user.firstName + ' ' +$scope.user.lastName)
   console.log('profile Updated');
+
+
 
   //  Now to notify other friends that profile has been updated. 
   // Get Those users unique key and add them in an array 

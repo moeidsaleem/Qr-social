@@ -103,13 +103,17 @@ function login(email, pass){
 			 //   THIS IS SIGN UP 
 			function signup(email, pass){
              console.log('you signup');
-			 $rootScope.auth.$createUserWithEmailAndPassword(email, pass).then(
+			 auth.$createUserWithEmailAndPassword(email, pass).then(
     		function(firebaseUser){
             // logic after sign up 
             console.log( "user signed up with following email" + firebaseUser.email + firebaseUser.uid);
                 $rootScope.uid = firebaseUser.uid;
-                afterSignUp(); /* handling database creation*/
-
+                
+                   users.child($rootScope.uid).set({  /*create new user*/
+                password:$rootScope.password,
+                email:$rootScope.email,
+                uniqueId:$rootScope.uid
+               });
 				// Now making a session with localStorage - When login run a session
 				sessionService.startSession('email', email);
 				sessionService.startSession('password', pass );
@@ -138,12 +142,17 @@ function login(email, pass){
 
 			return {
 				login:login,
-				logout:logout
+				logout:logout,
+				signup:signup
 			}
 
 
 	
 });
+
+
+
+
 
 app.run( function ($rootScope,$state,sessionService,authService,$stateParams) {
  
