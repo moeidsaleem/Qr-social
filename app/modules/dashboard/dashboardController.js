@@ -8,15 +8,33 @@ Author: atirxidigtal
 app.filter('algo', function($rootScope){
   var db = firebase.database().ref();
  var data = $firebaseArray(db); //got all the user uid
- 
- return function(query){
-  foreach(x in data){
-   return x.firstName;
-   
-   
- 
+  var myUser = [];
+  var arr = [];
+     var jagg = [[]]; 
 
-  }
+ return function(query){
+  
+    for(var i=0; i<data.length;i++){
+      for(var y = 0;y<4;y++){
+     switch(y){
+       case 0:
+         jagg[i][y] = data[i].firstName;
+         break;
+       case 1:
+         jagg[i][y] = data[i].university;
+         break;
+       case 2:
+         jagg[i][y] = data[i].city;
+         break;
+       case 3:
+         jagg[i][y] = data[i].company;
+         break;
+             }
+        
+        //now jagg is ready
+        
+    }
+  
 
 }
 });
