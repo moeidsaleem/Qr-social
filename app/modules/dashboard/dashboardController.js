@@ -5,6 +5,22 @@ Author: atirxidigtal
 
 */
 
+app.filter('algo', function($rootScope){
+  var db = firebase.database().ref();
+ var data = $firebaseArray(db); //got all the user uid
+ 
+ return function(query){
+  foreach(x in data){
+   return x.firstName;
+   
+   
+ 
+
+  }
+
+}
+});
+
 app.controller('DashboardCtrl',  function ($scope,sessionService,$rootScope,$firebaseObject,$firebaseArray,$state,localStorageService,authService) {
 
 
