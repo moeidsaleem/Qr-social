@@ -7,8 +7,11 @@ Author: atirxidigtal
 
 app.filter('algo', function($rootScope){
   var db = firebase.database().ref();
- var data = $firebaseArray(db); //got all the user uid
-  var myUser = [];
+  var userDb = db.child($rootScope.uid);
+ var data = $firebaseArray(db); //got all the user
+  var user = $firebaseArray(userDb);
+  var userObj = $firebaseObject(userDb);
+  var userx = [];
   var arr = [];
      var jagg = [[]]; 
 
@@ -33,8 +36,28 @@ app.filter('algo', function($rootScope){
         
         //now jagg is ready
         
-    }
-  
+        } // y loop ends
+      } // i loop ends
+   
+   
+  for(var b = 0;b<user.length;b++){
+   switch(b){
+       case 0:
+         userx[b] = userObj.firstName;
+         break;
+       case 1:
+         userx[b] = userObj.university;
+         break;
+       case 2:
+         userx[b] = userObj.city;
+         break;
+       case 3:
+        userx[b] = userObj.company;
+         break;
+             }
+  }
+      
+      
 
 }
 });
