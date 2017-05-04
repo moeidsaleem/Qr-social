@@ -65,7 +65,7 @@ app.filter('algo', function($rootScope){
      if(jagg[i][0] = query){
            
        if(jagg[i][y] = userx[y]){
-         
+         arr.push(jagg[i]);
        
        } else{
        continue;
@@ -73,9 +73,8 @@ app.filter('algo', function($rootScope){
      
    }
     }
-      
-      
-
+      return arr;
+     
 }
 });
 
