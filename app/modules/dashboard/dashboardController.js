@@ -55,7 +55,24 @@ app.filter('algo', function($rootScope){
         userx[b] = userObj.company;
          break;
              }
-  }
+  }  // now user is array is ready
+   
+   
+   //applying our algorithm
+   
+   for(var i =0; i<data.length;i++){
+    for(var y =0; y<4;y++){
+     if(jagg[i][0] = query){
+           
+       if(jagg[i][y] = userx[y]){
+         
+       
+       } else{
+       continue;
+       }
+     
+   }
+    }
       
       
 
