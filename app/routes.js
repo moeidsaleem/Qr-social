@@ -55,27 +55,27 @@ $stateProvider
       controller:'DashboardCtrl',
        templateUrl:'app/modules/dashboard/profile.html'
      })
-      .state('home',{
+       .state('home',{
        parent:'dashboard',
         controller:'DashboardCtrl',
        templateUrl:'app/modules/dashboard/home.html'
      })
       .state('people',{
        parent:'dashboard',
-       url:'/people',
+       url:'/dashboard/people',
         controller:'DashboardCtrl',
        templateUrl:'app/modules/dashboard/people.html'
      })
      .state('peopleDetails',{
        parent:'dashboard',
+       url:'dashboard/friends/detail',
        params:{selectedUser: null,Name:null},
-       url:'/dashboard/people/',
         controller:'DashboardCtrl',
        templateUrl:'app/modules/dashboard/people.details.html'
      })
        .state('friends',{
        parent:'dashboard',
-       url:'/friends',
+       url:'/dashboard/friends',
         controller:'DashboardCtrl',
        templateUrl:'app/modules/dashboard/friends.html'
      })
@@ -88,7 +88,7 @@ $stateProvider
      
         
 
-     $urlRouterProvider.otherwise('/profile');
+     $urlRouterProvider.otherwise('/login');
     //  // Remove the ! from the hash so that
     // // auth0.js can properly parse it
     $locationProvider.hashPrefix(''); 
