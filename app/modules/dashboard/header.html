@@ -1,0 +1,52 @@
+
+
+ <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" >
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Dashboard</a>
+                </div>
+                <div class="collapse navbar-collapse" uib-collapse="navCollapsed">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <a href="#" class="dropdown-toggle" ui-sref="home"">
+                                <i class="fa fa-dashboard" ></i>
+                            </a>
+                        </li>
+                        <li uib-dropdown>
+                              <a  class="dropdown-toggle" uib-dropdown-toggle>
+                                    <i class="fa fa-globe"></i>
+                                    <b class="caret"></b>
+                                    <span class="notification">5</span>
+                              </a>
+                              <ul uib-dropdown-menu>
+                                <li><a href="#">Notification<i class="fa fa-remove pull-right" style="background-color: rgba(229, 35, 37, 0.2);border-radius: 180px;padding:2px;"></i></a></li>
+                                <li><a href="#">Notification 2</a></li>
+                                <li><a href="#">Notification 3</a></li>
+                                <li><a href="#">Notification 4</a></li>
+                                <li><a href="#">Another notification</a></li>
+                              </ul>
+                        </li>
+                        <li>
+                           <a ui-sref="people.search">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                       
+                     
+                        <li>
+                            <a ng-click="click()">
+                                Log out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <script src="assets/js/demo.js"></script>
