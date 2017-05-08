@@ -11,7 +11,6 @@ let app = angular.module('myApp', [
 	'ui.bootstrap']);
 
 
-
 app.run( function ($rootScope,$state,sessionService,authService,$stateParams) {
  
 
@@ -80,7 +79,7 @@ $rootScope.go = function(route){
 
 
 $rootScope.loginUser = function(){
-		$rootScope.login($rootScope.email , $rootScope.password);
+	//	$rootScope.login($rootScope.email , $rootScope.password);
 }
 
 

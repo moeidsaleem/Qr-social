@@ -12,13 +12,13 @@
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Company</label>
-                                                <input type="text" class="form-control" ng-model="user.company" placeholder="Company" value="Creative Code Inc.">
+                                                <input type="text" class="form-control" ng-model="user.company" placeholder="Company" >
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Username</label>
-                                                <input type="text" class="form-control"  ng-model="user.username" placeholder="Username" >
+                                                <input type="text" class="form-control"  ng-model="user.username" placeholder="Username" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -33,13 +33,13 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>First Name</label>
-                                                <input type="text" class="form-control" ng-model="user.firstName" placeholder="First Name" >
+                                                <input type="text" class="form-control" ng-model="user.firstName" placeholder="First Name" lowerlize>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Last Name</label>
-                                                <input type="text" class="form-control" ng-model="user.lastName"  placeholder="Last Name">
+                                                <input type="text" class="form-control" ng-model="user.lastName"  placeholder="Last Name" lowerlize>
                                             </div>
                                         </div> 
                                         <div class="col-md-4">
@@ -184,19 +184,18 @@
                               
                               <div class="form-group">
                                  
-                                      <input type="text"  class="form-control" ng-model="user.profilePicUrl" class="form-control" pattern="" >
+                                      <input type="text"  class="form-control" ng-model="user.profilePicUrl" ng-change="users.$save(user)" class="form-control" pattern="" >
                                 
                               </div>
                               
                                       <h4 class="title">{{user.firstName + ' ' + user.lastName}}<br />
                                          <small>{{user.username}}</small>
                                       </h4>
+                                      <h5>{{user.company}}</h5>
                                     </a>
                                 </div>
-                                <p class="description text-center"> "{{user.aboutMe}} <br>
-                                                    Your chick she so thirsty <br>
-                                                    I'm in that two seat Lambo"
-                                </p>
+                              
+                                      
                             </div>
                             <hr>
                             <div class="text-center">

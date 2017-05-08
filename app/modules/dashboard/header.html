@@ -1,6 +1,6 @@
 
 
- <div class="container-fluid">
+ <div class="container-fluid" ng-controller="DashboardCtrl">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" >
                         <span class="sr-only">Toggle navigation</span>
@@ -8,7 +8,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard</a>
+                    <a class="navbar-brand" href="#">{{xas}}</a>
                 </div>
                 <div class="collapse navbar-collapse" uib-collapse="navCollapsed">
                     <ul class="nav navbar-nav navbar-left">
@@ -21,14 +21,12 @@
                               <a  class="dropdown-toggle" uib-dropdown-toggle>
                                     <i class="fa fa-globe"></i>
                                     <b class="caret"></b>
-                                    <span class="notification">5</span>
+                                    <span class="notification">{{notifications.length}}</span>
                               </a>
                               <ul uib-dropdown-menu>
-                                <li><a href="#">Notification<i class="fa fa-remove pull-right" style="background-color: rgba(229, 35, 37, 0.2);border-radius: 180px;padding:2px;"></i></a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
+
+                                <li ng-repeat="x in notifications"><a ng-click="openUser(x)" >{{x.notify}}</a></li>
+                               
                               </ul>
                         </li>
                         <li>

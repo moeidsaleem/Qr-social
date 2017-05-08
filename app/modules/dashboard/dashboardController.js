@@ -29,11 +29,14 @@ Author: atirxidigtal
 // });
 
 
-app.controller('DashboardCtrl',function ($scope,$timeout,sessionService,$rootScope,$firebaseObject,$firebaseArray,$state,localStorageService,authService) {
+app.controller('DashboardCtrl',function ($scope,$timeout,notificationService,sessionService,
+  $rootScope,$firebaseObject,$firebaseArray,$state,localStorageService,authService) {
  
  var vm = this;
  vm.authService = authService;
  vm.sessionService = sessionService;
+ vm.notification = notificationService;
+ 
 
  if(!sessionService.getSession('uid')){
       $state.go('login');
@@ -41,11 +44,23 @@ app.controller('DashboardCtrl',function ($scope,$timeout,sessionService,$rootSco
 
   const db = firebase.database().ref();
   const usersRef = db.child('users');
+  const userRef = usersRef.child($rootScope.uid);
+
+  $scope.notifications = vm.notification.get();
+   
   // const followingList = usersRef('users').child($scope.user.uniqueId).child('following');
-  
      $scope.users = $firebaseArray(usersRef);
 
+ 
+ $scope.openUser = function(x){
+  usersRef.child(x.userId).on('value',function(snap){
+      console.log(snap.val());
+      $scope.selectedUser = snap.val();
+      $state.go('friends.detail',{selectedUser:$scope.selectedUser});
+  
+  });
 
+ }
 // Now i need to get all friends 
 //first i will get all following user's key in an array. 
 //then i will make a loop and save the matching user in another array of object. 
@@ -53,41 +68,6 @@ app.controller('DashboardCtrl',function ($scope,$timeout,sessionService,$rootSco
 var arr = [];
 var usersArr = [];
 
-
- 
-
-
-
- var userRef = db.child('users').child($rootScope.uid);
- var f = userRef.child('following').on('value', function(snap){
-     var val = snap.val();
-     var values = Object.keys(val);
-     console.log(values); // a simple array which contain uniques id of the users to be searched.
-    console.log(values.length);
-    for(var i=0;i<values.length;i++)
-    usersRef.orderByKey().equalTo(values[i].toString()).on('value', function(s){
-     s.forEach(function(item){
-        console.log(item.val().uniqueId);
-      arr.push(item.val());
-     })
-     
-    })
-  console.log(arr);
-  $scope.friends = arr;
-  //  usersRef.orderByKey().equalTo(values).on('child_added', function(s){
-  //    console.log(s);
-  //  })
-
-
-});
-
-
-
-  // download the data into a local object
-  var syncObject = $firebaseObject(userRef);
-  // synchronize the object with a three-way data binding
-  // click on `index.html` above to see it used in the DOM!
-  syncObject.$bindTo($scope, "user");
 
 
 
@@ -128,43 +108,26 @@ $scope.getClickUser = function(x){
   console.log($scope.c);
 }
 
-$scope.onProfileUpdate = function(){
-  // Generate a notification to all the freinds 
-  userRef.child('name').set($scope.user.firstName + ' ' +$scope.user.lastName)
-  console.log('profile Updated');
 
-
-
-  //  Now to notify other friends that profile has been updated. 
-  // Get Those users unique key and add them in an array 
-  // For every value of array, generate notification.
-userRef.child('followers').on('value', function(snap){
-    let arrFriends = [];
-    arrFriends.push(snap.key());
-    usersRef.child(arrFriends[i]).child('notification').push().set({
-      notify:snap.val().firstName + ' ' + snap.val().lastName + 'updated profile'
-    });
-});
-
-
+let todoRef = userRef.child('todos');
+$scope.todos = $firebaseArray(todoRef); /*GET Todos*/
+$scope.addTodo = function(){
+  todoRef.push().set({
+    text:$scope.todo.text,
+    checked:false
+  });
+  $scope.todo = {};
 
 }
 
-$scope.removeNotification = function(x){
-  userRef.child('notification').child(x).remove();
-}
+ // create a destroy function
+  $scope.removeTodo = function(todo) {
+    $scope.todos.$remove(todo); 
+  };
 
+  $scope.todoUpdate = function(x){
+   todoRef.update();
+  }
 
-
-
-$scope.removeFriend = function(id){
- var r= usersRef.child($rootScope.uid).child('following').child(id);
- r.remove();
- $state.go('friends');
-}
-
-
- }
-
-
+ } /*This is where sessions ends*/
 });

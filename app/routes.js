@@ -51,43 +51,51 @@ $stateProvider
      .state('profile',{
        parent:'dashboard',
        url:'/profile',
-      controller:'DashboardCtrl',
+      controller:'profileCtrl',
        templateUrl:'app/modules/dashboard/profile/profile.html'
      })
        .state('home',{
        parent:'dashboard',
-       url:'/dashboard/home',
+       url:'/home',
         controller:'DashboardCtrl',
        templateUrl:'app/modules/dashboard/home.html'
      })
       .state('people.search',{
        parent:'dashboard',
-       url:'/dashboard/search',
+       url:'/people/search',
         controller:'peopleCtrl',
        templateUrl:'app/modules/dashboard/people/people.search.html'
      })
-         .state('people',{
+      .state('people.detail',{
        parent:'dashboard',
-       url:'/dashboard/people/',
+       url:'/people/detail',
+       params:{selectedUser: null,Name:null},
+        controller:'peopleCtrl',
+       templateUrl:'app/modules/dashboard/people/people.detail.html'
+     })
+           .state('people',{
+       parent:'dashboard',
+       url:'/people',
+       params:{query:null},
         controller:'peopleCtrl',
        templateUrl:'app/modules/dashboard/people/people.html'
      })
        .state('friends',{
        parent:'dashboard',
-       url:'/dashboard/friends',
-        controller:'DashboardCtrl',
+       url:'/friends',
+        controller:'friendCtrl',
        templateUrl:'app/modules/dashboard/friend/friends.html'
      })
         .state('friends.detail',{
        parent:'dashboard',
-       url:'dashboard/friends/detail',
+       url:'/friends/detail',
        params:{selectedUser: null,Name:null},
-        controller:'DashboardCtrl',
+        controller:'friendCtrl',
        templateUrl:'app/modules/dashboard/friend/friend.detail.html'
      })
        .state('meeting', {
         parent:'dashboard',
-        url:'dashboard/meeting',
+        url:'/meeting',
         controller: 'meetingCtrl',
         templateUrl: 'app/modules/dashboard/meeting/meeting.html',
         controllerAs: 'vm'
