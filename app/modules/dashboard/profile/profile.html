@@ -79,13 +79,13 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>City</label>
-                                                <input type="text" class="form-control" ng-model="user.city"  placeholder="City" >
+                                                <input type="text" class="form-control" ng-model="user.city"  placeholder="City" lowerlize>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Country</label>
-                                                <input type="text" class="form-control" ng-model="user.country" placeholder="Country">
+                                                <input type="text" class="form-control" ng-model="user.country" placeholder="Country" lowerlize>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -106,7 +106,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label> University Name</label>
-                                                <input type="text" class="form-control" ng-model="user.university"  placeholder="University Name">
+                                                <input type="text" class="form-control" ng-model="user.university"  placeholder="University Name" lowerlize>
                                             </div>
                                         </div>
                                     </div>
@@ -192,6 +192,7 @@
                                          <small>{{user.username}}</small>
                                       </h4>
                                       <h5>{{user.company}}</h5>
+                                      <h6 class="text-warning">{{user.city}}, {{user.country}}</h6>
                                     </a>
                                 </div>
                               

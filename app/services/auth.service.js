@@ -1,5 +1,5 @@
 "use strict";
-app.service('authService', function ($rootScope,$firebaseAuth,sessionService,$state) {
+app.service('authService', function ($rootScope,$firebaseAuth,sessionService,$state,$window) {
 
  var auth = $firebaseAuth();
 
@@ -43,7 +43,9 @@ function login(email, pass){
   // end All sessions 
 	   sessionService.endAllSessions(); /* data is cleared. */
 
-	   $state.go('login');
+	 $state.go('login', {}, {reload: true}).then(function(){
+              $window.location.reload(true);
+      });
 
 	 
    }

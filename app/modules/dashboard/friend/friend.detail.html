@@ -41,17 +41,12 @@
                                || <b> JOB Title</b> {{selectedUser.jobTitle}} || <br>
                               <h4 class="text-center" style="border:2px;border-style: dotted;border-color:black;">{{selectedUser.phone}}  </h4>
                                 </p>
-                                
-
-
-
                             </div>
                             <hr>
                             <div class="text-center">
                                <a href="{{selectedUser.facebook}}"> <button  class="btn btn-simple"><i class="fa fa-facebook-square"></i></button></a>
                                 <a href="{{selectedUser.twitter}}"><button  class="btn btn-simple"><i class="fa fa-twitter"></i></button></a>
                                 <a href="{{selectedUser.linkedIn}}"><button  class="btn btn-simple"><i class="fa fa-linkedin"></i></button></a>
-
                             </div>
                         </div>
                           <div class="card card-user">
@@ -60,11 +55,10 @@
                             <div class="content">
                                 <div class="author">
                                      <a>
-                                <qrcode data="{{$selectedUser.name}},{{$selectedUser.city}}" size="300"></qrcode>
+                                <qrcode data="{{selectedUser.name}},{{selectedUser.city}}, {{selectedUser.university}},{{selectedUser.phone}},{{selectedUser.phoneOffice}},{{selectedUser.homeAddress}}" size="300"></qrcode>
 
                               
                               <div class="form-group">
-                                 
                                       <input type="text" disabled   class="form-control" ng-model="$selectedUser.profilePicUrl" class="form-control" pattern="" >
                                 
                               </div>

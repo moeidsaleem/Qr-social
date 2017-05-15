@@ -70,12 +70,13 @@
                               
                               <div class="form-group">
                                  
-                                      <input type="text"  class="form-control" ng-model="user.profilePicUrl" ng-change="users.$save(user)" class="form-control" pattern="" >
+                                      <button  class="btn btn-primary btn-lg" ng-click="follow(user)">Follow {{user.counter}} </button>
                                 
                               </div>
                               
                                       <h4 class="title">{{user.firstName + ' ' + user.lastName}}<br />
-                                         <small>{{user.username}}</small>
+                                         <small>{{user.username}}</small> <br>
+                                         <small><i class="fa fa-university"></i> {{user.university}}, Age:{{user.age}} </small>
                                       </h4>
                                       <h5>{{user.company}}</h5>
                                     </a>

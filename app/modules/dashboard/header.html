@@ -25,8 +25,13 @@
                               </a>
                               <ul uib-dropdown-menu>
 
-                                <li ng-repeat="x in notifications"><a ng-click="openUser(x)" >{{x.notify}}</a></li>
-                               
+                                <div class="form-inline"><li ng-repeat="x in notifications">
+
+                                <a ng-click="openUser(x)" >{{x.notify}}</a>
+                                <span class=" badge pull-right" ng-click="notifications.$remove(x)"><i class="fa fa-remove"></i></span>
+                                
+                                </li>
+                               </div>
                               </ul>
                         </li>
                         <li>

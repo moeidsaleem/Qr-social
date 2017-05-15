@@ -32,3 +32,16 @@
                     </div>
                 </div>
             </div>
+<hr>
+
+            <div class="container">
+            <h2 class="media-heading"> Friend Request </h2>
+
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="x in friendRequest"><img class="img-responsive img-circle" src="{{x.profilePicUrl}}" >{{x.uniqueId}}
+                <i class="fa fa-tick" ng-click="follow(x)"></i><i class="fa fa-remove" ng-click="friendRequest.$remove(x)"></i>
+                </li>
+               
+            </ul>
+
+            </div>

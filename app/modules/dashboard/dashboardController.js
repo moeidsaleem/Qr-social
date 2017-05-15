@@ -53,12 +53,14 @@ app.controller('DashboardCtrl',function ($scope,$timeout,notificationService,ses
 
  
  $scope.openUser = function(x){
+  $scope.notifications.$remove(x);
   usersRef.child(x.userId).on('value',function(snap){
       console.log(snap.val());
       $scope.selectedUser = snap.val();
       $state.go('friends.detail',{selectedUser:$scope.selectedUser});
   
   });
+
 
  }
 // Now i need to get all friends 
@@ -69,33 +71,6 @@ var arr = [];
 var usersArr = [];
 
 
-
-
-  $scope.follow = function(x){
-                  console.log(x.uniqueId);  
-                  var d = new Date();
-                  var fRef = userRef.child('following').child(x.uniqueId);
-                  fRef.set({
-                    email:x.email,
-                    uniqueId:x.uniqueId,
-                    followDate: d.toLocaleDateString(),
-                    following:true
-                  });
-              // Hence Following user info added into current user following list.
-
-
-              // Now to add current user info into to be followed user following list.
-              var otherRef = usersRef.child(x.uniqueId).child('followers').child($scope.user.uniqueId);
-              otherRef.set({
-                email:$scope.user.email,
-                uniqueId:$scope.user.uniqueId,
-                followingSince: d.toLocaleDateString(),
-                following:false
-   });
-
-  //  Now disable the button
-  
-}
 
 
 

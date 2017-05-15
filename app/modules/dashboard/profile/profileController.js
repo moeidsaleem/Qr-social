@@ -19,9 +19,7 @@ var storageRef = firebase.storage().ref();
            
 
 $scope.onProfileUpdate = function(){
-  // Generate a notification to all the freinds 
-  userRef.child('name').set($scope.user.firstName + ' ' +$scope.user.lastName)
-  console.log('profile Updated');
+
      notificationService.update();
 
 }

@@ -3,6 +3,7 @@
 app.service('notificationService', function ($rootScope,$firebaseArray) {
 
 var db = firebase.database().ref().child('users').child($rootScope.uid);
+var users = firebase.database().ref().child('users');
 var nRef = db.child('notifications');
  var data = $firebaseArray(nRef);
 
@@ -21,16 +22,31 @@ function deleteNotification(notification){
 
 function onUpdateNotify(){
     
-    let f = db.child('followers');
-    let followersData = $firebaseArray(f);
+    let f = db.child('following'); 
 
+   
+f.on('value', function(snap){
+   
+   snap.forEach( function(s){
+ users.child(s.val().uniqueId).child('notifications').push().set({
+   	notify:$rootScope.user.firstName+ '('+$rootScope.user.username+')'+' updated Profile.',
+   	userId:$rootScope.uid
+   });
+   } );
+  
+   
+});
 
-    // Now get all uid of followers 
-   for(var i=0;i<followers.length;i++){
-   	 followers[i] = followersData[i].$key;
-   }
+var date = new Date();
 
-console.log('')
+   
+
+  data.$add({
+  	notify:'Profile updated at: '+ date.getDate() +'/'+date.getMonth()+'/'+date.getYear(),
+  	userId:$rootScope.uid
+  });
+
+console.log('profile updated');
 
 }
 

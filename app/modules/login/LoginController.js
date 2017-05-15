@@ -6,11 +6,11 @@ Author: atirxidigtal
 */
 app.controller('LoginCtrl',  function ($scope,authService,sessionService) {
  
+
+
    var vm = this;
     vm.authService = authService;
     vm.sessionService = sessionService;
-
-
 
 
  
