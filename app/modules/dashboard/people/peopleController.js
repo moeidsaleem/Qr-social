@@ -60,34 +60,34 @@ otherRef.set({
 
 }
 
-// FOLLOW
-  $scope.follow = function(x){
-      $state.go('friends');
+// // FOLLOW
+//   $scope.follow = function(x){
+//       $state.go('friends');
 
-                  console.log(x.uniqueId);  
-                  var d = new Date();
-                  var fRef = userRef.child('following').child(x.uniqueId);
-                  fRef.set({
-                    email:x.email,
-                    uniqueId:x.uniqueId,
-                    followDate: d.toLocaleDateString(),
-                    following:true
-                  });
-              // Hence Following user info added into current user following list.
+//                   console.log(x.uniqueId);  
+//                   var d = new Date();
+//                   var fRef = userRef.child('following').child(x.uniqueId);
+//                   fRef.set({
+//                     email:x.email,
+//                     uniqueId:x.uniqueId,
+//                     followDate: d.toLocaleDateString(),
+//                     following:true
+//                   });
+//               // Hence Following user info added into current user following list.
 
 
-              // Now to add current user info into to be followed user following list.
-              var otherRef = usersRef.child(x.uniqueId).child('followers').child($scope.user.uniqueId);
-              otherRef.set({
-                email:$scope.user.email,
-                uniqueId:$scope.user.uniqueId,
-                followingSince: d.toLocaleDateString(),
-                following:false
-   });
+//               // Now to add current user info into to be followed user following list.
+//               var otherRef = usersRef.child(x.uniqueId).child('followers').child($scope.user.uniqueId);
+//               otherRef.set({
+//                 email:$scope.user.email,
+//                 uniqueId:$scope.user.uniqueId,
+//                 followingSince: d.toLocaleDateString(),
+//                 following:false
+//    });
 
-  //  Now disable the button
+//   //  Now disable the button
 
-}
+// }
 
 
 

@@ -24,39 +24,44 @@ $scope.onProfileUpdate = function(){
 
 }
  
- function previewFile() {
-  var preview = document.querySelector('img');
-  var file    = document.querySelector('input[type=file]').files[0];
-  var reader  = new FileReader();
 
-  reader.addEventListener("load", function () {
-    preview.src = reader.result;
-  }, false);
+  // Get a reference to the storage service, which is used to create references in your storage bucket
+  var uploader = document.getElementById('uploader');
+  var fileButton = document.getElementById('fileButton');
 
-  if (file) {
-    reader.readAsDataURL(file);
-  }
-  // Create file metadata including the content type
-  var storageRef = firebase.storage().ref();
-var metadata = {
-  contentType: 'image/*',
-  name:file.name
-};
+//listen for file selection
+fileButton.addEventListener('change', function(e){
+  //get file
+  var file = e.target.files[0];
 
 
+  //create a storage ref
+ var storageRef =  firebase.storage().ref('users/'+$rootScope.user.username+'/'+file.name);
 
-var uploadTask = storageRef.child('users/'+$rootScope.uid+'/profile.jpg').put(file, metadata).then(function(){
-console.log('upload done!');
+//upload a file
+var task = storageRef.put(file);
+
+
+//update progres bar 
+task.on('state_changed',
+  function progress(snapshot){
+    var percentage = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+    uploader.value = percentage;
+
+
+}, function error(err){
+
+}, function complete(){
+  userRef.child('photo').set(task.snapshot.downloadURL);
+  var downloadURL = task.snapshot.downloadURL;
+  
+ 
+
+})
+
 
 });
 
-}
 
 
-
-
-
-
-
-    
 });
